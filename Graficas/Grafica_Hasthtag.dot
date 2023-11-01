@@ -1,0 +1,38 @@
+
+            graph "" {bgcolor="#f2f2f2" gradientangle=90 label="Grafica Hashtag"
+                fontname="Helvetica,Arial,sans-serif"
+                node [fontname="Helvetica,Arial,sans-serif"]
+                edge [fontname="Helvetica,Arial,sans-serif"]subgraph cluster01{label="Fecha: 15/10/2023" style="filled" gradientangle="270"
+n001[fillcolor="#d43440", style=filled, shape=doublecircle, label="15/10/2023"];
+n002 [fillcolor="#65babf", style=filled, shape=circle, label="#sisale#: 1 mensajes."];
+n001--n002 ;
+n003 [fillcolor="#65babf", style=filled, shape=circle, label="#vacas#: 1 mensajes."];
+n001--n003 ;
+n004 [fillcolor="#65babf", style=filled, shape=circle, label="#holamundo#: 1 mensajes."];
+n001--n004 ;
+n005 [fillcolor="#65babf", style=filled, shape=circle, label="#enojo#: 1 mensajes."];
+n001--n005 ;
+
+}
+subgraph cluster02{label="Fecha: 16/10/2023" style="filled" gradientangle="270"
+n007[fillcolor="#d43440", style=filled, shape=doublecircle, label="16/10/2023"];
+n008 [fillcolor="#65babf", style=filled, shape=circle, label="#nosale#: 1 mensajes."];
+n007--n008 ;
+n009 [fillcolor="#65babf", style=filled, shape=circle, label="#yaCasi#: 1 mensajes."];
+n007--n009 ;
+
+}
+subgraph cluster03{label="Fecha: 17/10/2023" style="filled" gradientangle="270"
+n0011[fillcolor="#d43440", style=filled, shape=doublecircle, label="17/10/2023"];
+n0012 [fillcolor="#65babf", style=filled, shape=circle, label="#sinIdeas#: 1 mensajes."];
+n0011--n0012 ;
+
+}
+subgraph cluster04{label="Fecha: 26/10/2023" style="filled" gradientangle="270"
+n0014[fillcolor="#d43440", style=filled, shape=doublecircle, label="26/10/2023"];
+n0015 [fillcolor="#65babf", style=filled, shape=circle, label="#ElMejorAux#: 1 mensajes."];
+n0014--n0015 ;
+
+}
+
+}
