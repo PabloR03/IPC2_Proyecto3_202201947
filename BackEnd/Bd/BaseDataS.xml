@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BaseDataS>
+  <Sentimiento-Positivo>
+    <Palabra>emocionado</Palabra>
+    <Palabra>excelente</Palabra>
+    <Palabra>genial</Palabra>
+    <Palabra>alegre</Palabra>
+  </Sentimiento-Positivo>
+  <Sentimiento-Negativo>
+    <Palabra>mal</Palabra>
+    <Palabra>triste</Palabra>
+    <Palabra>molesto</Palabra>
+    <Palabra>decepcionado</Palabra>
+    <Palabra>enojo</Palabra>
+  </Sentimiento-Negativo>
+</BaseDataS>

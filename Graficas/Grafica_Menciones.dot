@@ -1,36 +1,36 @@
 
-            graph "" {bgcolor="#f2f2f2" gradientangle=90 label="Grafica Menciones"
+            graph "" {bgcolor="white" gradientangle=90 label="Grafica Menciones"
                 fontname="Helvetica,Arial,sans-serif"
                 node [fontname="Helvetica,Arial,sans-serif"]
                 edge [fontname="Helvetica,Arial,sans-serif"]subgraph cluster01{label="Fecha: 15/10/2023" style="filled" gradientangle="270"
-n001[fillcolor="#d43440", style=filled, shape=doublecircle, label="15/10/2023"];
-n002 [fillcolor="#65babf", style=filled, shape=circle, label="@elaux: 1 mensajes."];
+n001[fillcolor="white", style=filled, shape=square, label="15/10/2023"];
+n002 [fillcolor="white", style=filled, shape=square, label="@elaux: 1 mensajes."];
 n001--n002 ;
-n003 [fillcolor="#65babf", style=filled, shape=circle, label="@proyecto: 1 mensajes."];
+n003 [fillcolor="white", style=filled, shape=square, label="@proyecto: 1 mensajes."];
 n001--n003 ;
-n004 [fillcolor="#65babf", style=filled, shape=circle, label="@Cobrakai: 1 mensajes."];
+n004 [fillcolor="white", style=filled, shape=square, label="@Cobrakai: 1 mensajes."];
 n001--n004 ;
-n005 [fillcolor="#65babf", style=filled, shape=circle, label="@enojadito: 1 mensajes."];
+n005 [fillcolor="white", style=filled, shape=square, label="@enojadito: 1 mensajes."];
 n001--n005 ;
 
 }
 subgraph cluster02{label="Fecha: 16/10/2023" style="filled" gradientangle="270"
-n007[fillcolor="#d43440", style=filled, shape=doublecircle, label="16/10/2023"];
-n008 [fillcolor="#65babf", style=filled, shape=circle, label="@tristeza: 1 mensajes."];
+n007[fillcolor="white", style=filled, shape=square, label="16/10/2023"];
+n008 [fillcolor="white", style=filled, shape=square, label="@tristeza: 1 mensajes."];
 n007--n008 ;
-n009 [fillcolor="#65babf", style=filled, shape=circle, label="@Cobrakai: 1 mensajes."];
+n009 [fillcolor="white", style=filled, shape=square, label="@Cobrakai: 1 mensajes."];
 n007--n009 ;
 
 }
 subgraph cluster03{label="Fecha: 17/10/2023" style="filled" gradientangle="270"
-n0011[fillcolor="#d43440", style=filled, shape=doublecircle, label="17/10/2023"];
-n0012 [fillcolor="#65babf", style=filled, shape=circle, label="@ipc2: 1 mensajes."];
+n0011[fillcolor="white", style=filled, shape=square, label="17/10/2023"];
+n0012 [fillcolor="white", style=filled, shape=square, label="@ipc2: 1 mensajes."];
 n0011--n0012 ;
 
 }
 subgraph cluster04{label="Fecha: 26/10/2023" style="filled" gradientangle="270"
-n0014[fillcolor="#d43440", style=filled, shape=doublecircle, label="26/10/2023"];
-n0015 [fillcolor="#65babf", style=filled, shape=circle, label="@Cobrakai: 1 mensajes."];
+n0014[fillcolor="white", style=filled, shape=square, label="26/10/2023"];
+n0015 [fillcolor="white", style=filled, shape=square, label="@Cobrakai: 1 mensajes."];
 n0014--n0015 ;
 
 }

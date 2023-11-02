@@ -1,5 +1,6 @@
 from BackEnd.Mensaje.Fecha_Mensaje import Fecha_Mensaje
 from BackEnd.Mensaje.Contenido_Mensaje import Contenido_Mensaje
+import xml.etree.ElementTree as ET
 import os
 def contar_hashtag(lista):
     # Crea un diccionario vacío para realizar el seguimiento de las cuentas de hashtag
@@ -43,14 +44,14 @@ class MensajeDAO:
         return True
     
     def imprimir_mensaje(self):
-        print("------------------------")
+        print("+++++MENSAJES+++++")
         for fecha in self.lista_mensaje_fecha:
             print("---",fecha.fecha,"---")
             for mensaje in fecha.lista_mensaje:
                 print(mensaje.usuario)
                 print(mensaje.hashtag)
                 print(mensaje.texto_mensaje)
-        print("------------------------")
+        print("++++++++++++++++++")
     
     def resetear_datos_mensaje(self):
         self.lista_mensaje_fecha.clear()
@@ -79,7 +80,7 @@ class MensajeDAO:
         nombre_archivo = "Graficas\\Grafica_Hasthtag"
         f = open(nombre_archivo+'.dot','w')
         texto_g = """
-            graph "" {bgcolor="#f2f2f2" gradientangle=90 label="Grafica Hashtag"
+            graph "" {bgcolor="white" gradientangle=90 label="Grafica Hashtag"
                 fontname="Helvetica,Arial,sans-serif"
                 node [fontname="Helvetica,Arial,sans-serif"]
                 edge [fontname="Helvetica,Arial,sans-serif"]"""
@@ -90,13 +91,13 @@ class MensajeDAO:
             texto_g+= """subgraph cluster0"""+str(contador_subgrafo)+"""{label="""+f'"'+fecha_mensaje+f'"'+""" style="filled" gradientangle="270"\n"""
             contador_actual=contador_nodo
             contador_nodo+=1
-            texto_g += """n00"""+str(contador_actual)+"""[fillcolor="#d43440", style=filled, shape=doublecircle, label="""+f'"'+fecha.fecha+f'"'+"""];\n"""
+            texto_g += """n00"""+str(contador_actual)+"""[fillcolor="white", style=filled, shape=square, label="""+f'"'+fecha.fecha+f'"'+"""];\n"""
             for mensaje in fecha.lista_mensaje:
                 for hashtag in mensaje.hashtag:
                     lista_hashtag.append(hashtag)
             consultar_hashtag=contar_hashtag(lista_hashtag)
             for hashtag, cuenta in consultar_hashtag.items():
-                texto_g += """n00"""+str(contador_nodo)+""" [fillcolor="#65babf", style=filled, shape=circle, label="""+f'"'+f"#{hashtag}#: {cuenta} mensajes."+f'"'+"""];\n"""
+                texto_g += """n00"""+str(contador_nodo)+""" [fillcolor="white", style=filled, shape=square, label="""+f'"'+f"#{hashtag}#: {cuenta} mensajes."+f'"'+"""];\n"""
                 texto_g += """n00"""+str(contador_actual)+ """--"""+ """n00"""+str(contador_nodo)+""" ;\n"""
                 contador_nodo+=1
             lista_hashtag.clear()
@@ -109,6 +110,34 @@ class MensajeDAO:
         os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
         os.system(f'dot -Tpdf {nombre_archivo}.dot -o {nombre_archivo}.pdf')
         return "Grafica Hashtag Generada Correctamente"
+    
+    def base_datos_mensaje(self):
+            mensajes_generales = ET.Element("BaseDataM")
+            for fecha in self.lista_mensaje_fecha:
+                mensaje = ET.SubElement(mensajes_generales, "Mensaje")
+                fecha_ms = ET.SubElement(mensaje, "Fecha")
+                fecha_ms.text = fecha.fecha
+                for mensaje_fecha in fecha.lista_mensaje:
+                    texto_ms = ET.SubElement(mensaje, "Texto")
+                    texto_ms.text = mensaje_fecha.texto_mensaje
+            datos=ET.tostring(mensajes_generales)
+            datos=str(datos)
+            self.xml_identado(mensajes_generales)
+            arbol_xml=ET.ElementTree(mensajes_generales)
+            arbol_xml.write("BackEnd/Bd/BaseDataM.xml",encoding="UTF-8",xml_declaration=True)
+
+    def xml_identado(self, element, indent='  '):
+        queue = [(0, element)]
+        while queue:
+            level, element = queue.pop(0)
+            children = [(level + 1, child) for child in list(element)]
+            if children:
+                element.text = '\n' + indent * (level + 1)
+            if queue:
+                element.tail = '\n' + indent * queue[0][0]
+            else:
+                element.tail = '\n' + indent * (level - 1)
+            queue[0:0] = children
 
     def consultar_menciones(self):
         if len(self.lista_mensaje_fecha)==0:
@@ -134,7 +163,7 @@ class MensajeDAO:
         nombre_archivo = "Graficas\\Grafica_Menciones"
         f = open(nombre_archivo+'.dot','w')
         texto_g = """
-            graph "" {bgcolor="#f2f2f2" gradientangle=90 label="Grafica Menciones"
+            graph "" {bgcolor="white" gradientangle=90 label="Grafica Menciones"
                 fontname="Helvetica,Arial,sans-serif"
                 node [fontname="Helvetica,Arial,sans-serif"]
                 edge [fontname="Helvetica,Arial,sans-serif"]"""
@@ -145,13 +174,13 @@ class MensajeDAO:
             texto_g+= """subgraph cluster0"""+str(contador_subgrafo)+"""{label="""+f'"'+fecha_mensaje+f'"'+""" style="filled" gradientangle="270"\n"""
             contador_actual=contador_nodo
             contador_nodo+=1
-            texto_g += """n00"""+str(contador_actual)+"""[fillcolor="#d43440", style=filled, shape=doublecircle, label="""+f'"'+fecha.fecha+f'"'+"""];\n"""
+            texto_g += """n00"""+str(contador_actual)+"""[fillcolor="white", style=filled, shape=square, label="""+f'"'+fecha.fecha+f'"'+"""];\n"""
             for mensaje in fecha.lista_mensaje:
                 for usuario in mensaje.usuario:
                     lista_usuario.append(usuario)
             consultar_menciones=contar_usuarios(lista_usuario)
             for usuario, cuenta in consultar_menciones.items():
-                texto_g += """n00"""+str(contador_nodo)+""" [fillcolor="#65babf", style=filled, shape=circle, label="""+f'"'+f"@{usuario}: {cuenta} mensajes."+f'"'+"""];\n"""
+                texto_g += """n00"""+str(contador_nodo)+""" [fillcolor="white", style=filled, shape=square, label="""+f'"'+f"@{usuario}: {cuenta} mensajes."+f'"'+"""];\n"""
                 texto_g += """n00"""+str(contador_actual)+ """--"""+ """n00"""+str(contador_nodo)+""" ;\n"""
                 contador_nodo+=1
             lista_usuario.clear()

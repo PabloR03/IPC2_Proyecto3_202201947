@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>202201947</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'myscript.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1>p3_202201947</h1>
+        </div>
+        <div class="sidebar">
+            <div class="button-section">
+                <h2>SECCION CARGA DE ARCHIVOS:</h2>
+                <form method="POST" id="myfrom" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="button-with-icon">
+                        <input class="form-control" type="file" id="file-input-mensaje" accept=".xml">
+                        <button type="button" id="cargar_archivo_mensaje"><i class="fas fa-upload"></i> Cargar Archivo Mensaje</button>
+                    </div>
+                    <div class="button-with-icon">
+                        <input type="file" id="file-input-config" name="file" accept=".xml" />
+                        <button type="button" id="cargar_archivo_config"><i class="fas fa-upload"></i> Cargar Archivo Sentimiento</button>
+                    </div>
+                </form>
+            </div>
+            <div class="button-section">
+                <h2>OPERACIONES DE CONSULTA:</h2>
+                <button type="button" id="consultar_hashtag">Consultar Hashtag</button>
+                <button type="button" id="consultar_menciones">Consultar Menciones</button>
+                <button type="button" id="consultar_sentimiento">Consultar Sentimiento</button>
+                <button type="button" id="grafica_hashtag">Grafica Hashtag</button>
+                <button type="button" id="grafica_menciones">Grafica Menciones</button>
+                <button type="button" id="grafica_sentimiento">Grafica Sentimiento</button>
+            </div>
+            <div class="button-section">
+                <h2>OPERACIONES:</h2>
+                <button type="button" id="Documentacion">Documentacion</button>
+                <button type="button" id="Info_estudiate">Info Del estudiante</button>
+                <button type="button" id="Inicializar">Inicializar Sistema</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="centered-textarea">
+                <textarea id="mensajeTexto" class="larger" placeholder=""></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

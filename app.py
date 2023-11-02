@@ -26,9 +26,9 @@ def index():
 
 @app.route('/cargar/Mensajes',methods=['POST'])
 def cargar_archivo_mensajes():
-    if 'Entrada_xml' not in request.files:
+    if 'file' not in request.files:
         return jsonify({"Mensajes": "No se ha enviado un archivo."})
-    archivo = request.files['Entrada_xml']
+    archivo = request.files['file']
     contenido_xml=archivo.read().decode('utf-8')
     root = ET.fromstring(contenido_xml)
     for mensaje in root.findall(".//MENSAJE"):
@@ -38,13 +38,14 @@ def cargar_archivo_mensajes():
         usuario = encontrar_usuario(texto)
         manejador_mensaje.nuevo_mensaje(fecha, usuario, hashtag, texto)
     #manejador_mensaje.imprimir_mensaje()
-    return jsonify({"Mensaje": "Archivo Mensajes Leído."})  
+    manejador_mensaje.base_datos_mensaje()
+    return jsonify({"message": "Archivo Mensajes Procesado"})
 
 @app.route('/cargar/Configuracion', methods=['POST'])
 def cargar_archivo_configuracion():
-    if 'Configuracion_xml' not in request.files:
+    if 'file' not in request.files:
         return jsonify({"Configuraciones": "No se ha enviado un archivo."})
-    archivo = request.files['Configuracion_xml']
+    archivo = request.files['file']
     contenido_xml=archivo.read().decode('utf-8')
     root = ET.fromstring(contenido_xml)
     for sentimiento in root.findall(".//sentimientos_positivos/palabra"):
@@ -52,37 +53,38 @@ def cargar_archivo_configuracion():
     for sentimiento in root.findall(".//sentimientos_negativos/palabra"):
         manejador_sentimiento.nuevo_sentimiento_negativo(sentimiento.text.strip())
     #manejador_sentimiento.imprimir_sentimiento()
-    return jsonify({"Configuraciones": "Archivo Configuraciones Leído."})
+    manejador_sentimiento.base_datos_configuracion()
+    return jsonify({"message": "Archivo Configuraciones Procesado"})
 
 @app.route('/consulta/Hashtag', methods=['GET'])
 def consultar_hashtag():
     respuesta=manejador_mensaje.consultar_hashtag()
-    return respuesta
+    return jsonify({"message": f"{respuesta}"})
 
 @app.route('/consulta/Menciones', methods=['GET'])
 def consultar_menciones():
     respuesta=manejador_mensaje.consultar_menciones()
-    return respuesta
+    return jsonify({"message": f"{respuesta}"})
 
 @app.route('/consulta/Sentimiento', methods=['GET'])
 def consultar_sentimiento_mensaje():
     respuesta=manejador_sentimiento.consultar_sentimiento_mensaje(manejador_mensaje.lista_mensaje_fecha)
-    return respuesta
+    return jsonify({"message": f"{respuesta}"})
 
 @app.route('/grafica/Hashtag', methods=['GET'])
 def grafica_consulta_hashtag():
     respuesta=manejador_mensaje.grafica_consular_hashtag()
-    return respuesta
+    return jsonify({"message": f"{respuesta}"})
 
 @app.route('/grafica/Menciones', methods=['GET'])
 def grafica_consulta_menciones():
     respuesta=manejador_mensaje.grafica_consular_menciones()
-    return respuesta
+    return jsonify({"message": f"{respuesta}"})
 
-@app.route('/grafica/Sentimiento', methods=['GET'])
+@app.route('/grafica/Sentimientos', methods=['GET'])
 def grafica_consultar_sentimiento_mensaje():
     respuesta=manejador_sentimiento.grafica_sentimiento_mensaje(manejador_mensaje.lista_mensaje_fecha)
-    return respuesta
+    return jsonify({"message": f"{respuesta}"})
 
 @app.route('/limpiarSistema', methods=['POST'])
 def resetear_datos():
@@ -93,6 +95,11 @@ def resetear_datos():
     manejador_mensaje.imprimir_mensaje()
     manejador_sentimiento.imprimir_sentimiento()
     return jsonify({"Resetar Datos": "Datos Reseteados Correctamente"})
+
+@app.route('/informacion/Estudiante', methods=['GET'])
+def informacion_estudiante():
+    respuesta="PABLO ANDRES RODRIGUEZ LIMA"+"\n"+"202201947"+"\n"+"IPC2 - CUARTO SEMESTRE"+"\n"+"INGENIERIA EN CIENCIAS Y SISTEMAS"+"\n"+"SECCION D"
+    return jsonify({"message": f"{respuesta}"})
 
 if __name__=="__main__":
     app.run(threaded=True,port=5000,debug=True)

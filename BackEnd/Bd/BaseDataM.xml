@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BaseDataM>
+  <Mensaje>
+    <Fecha>15/10/2023</Fecha>
+    <Texto> Si sale el proyecto 3, estoy emocionado, que genial #sisale# #vacas# @elaux @proyecto
+    </Texto>
+    <Texto> Probando positivas, excelente y alegre #holamundo# @Cobrakai
+    </Texto>
+    <Texto> Estoy decepcionado del proyecto, y eso me causa enojo @enojadito #enojo#
+    </Texto>
+  </Mensaje>
+  <Mensaje>
+    <Fecha>16/10/2023</Fecha>
+    <Texto> Probando negativas, mal día, estoy triste y molesto #nosale# @tristeza
+    </Texto>
+    <Texto> #yaCasi# La penultima clase  @Cobrakai
+    </Texto>
+  </Mensaje>
+  <Mensaje>
+    <Fecha>17/10/2023</Fecha>
+    <Texto> No se que escribir #sinIdeas# @ipc2
+    </Texto>
+  </Mensaje>
+  <Mensaje>
+    <Fecha>26/10/2023</Fecha>
+    <Texto> Si sale ipc2 #ElMejorAux# @Cobrakai
+    </Texto>
+  </Mensaje>
+</BaseDataM>
